@@ -1,3 +1,3 @@
-module github.com/chef-go/util
+module github.com/chefsgo/util
 
 go 1.17

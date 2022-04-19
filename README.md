@@ -1,2 +1,2 @@
 # util
-chef-go util
+chefsgo util
