@@ -11,7 +11,26 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	. "github.com/chefsgo/base"
 )
+
+func ParseDurationConfig(config Map, field string) time.Duration {
+	if expiry, ok := config[field].(string); ok {
+		dur, err := ParseDuration(expiry)
+		if err == nil {
+			return dur
+		}
+	}
+	if expiry, ok := config[field].(int); ok {
+		return time.Second * time.Duration(expiry)
+	}
+	if expiry, ok := config[field].(int64); ok {
+		return time.Second * time.Duration(expiry)
+	}
+
+	return -1
+}
 
 // GenerateUUID is used to generate a random UUID
 func UUID() string {
