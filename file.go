@@ -2,25 +2,14 @@ package util
 
 import (
 	"path"
+	"strings"
 )
 
 func Extension(name string) string {
-	ext := path.Ext(name)
+	ext := strings.ToLower(path.Ext(name))
 	if ext != "" {
 		return ext[1:]
 	}
 
 	return ext
-	//slices := strings.Split(name, ".")
-	//dots := len(slices)
-	//
-	//if dots == 1 {
-	//    return ""
-	//}
-	//
-	//i := 1
-	//if dots > 3 {
-	//    i = dots - 2
-	//}
-	//return strings.Join(slices[i:], ".")
 }
