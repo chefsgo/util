@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"crypto/rand"
 	"crypto/sha1"
+	"encoding/base64"
 	"encoding/hex"
 	"errors"
 	"fmt"
@@ -64,6 +65,21 @@ func Sha1File(file string) string {
 		h := sha1.New()
 		if _, e := io.Copy(h, f); e == nil {
 			return fmt.Sprintf("%x", h.Sum(nil))
+		}
+	}
+	return ""
+}
+
+func Sha1BaseFile(file string) string {
+	if f, e := os.Open(file); e == nil {
+		defer f.Close()
+
+		h := sha1.New()
+		if _, e := io.Copy(h, f); e == nil {
+
+			return base64.URLEncoding.EncodeToString(h.Sum(nil))
+
+			// return fmt.Sprintf("%x", h.Sum(nil))
 		}
 	}
 	return ""
